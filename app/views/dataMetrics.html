@@ -1,0 +1,27 @@
+<div id="dataMetricsDashboard" class="container contentContainer col-md-8 col-xs-12 col-md-offset-2"
+  style="margin-top: 20px;" ng-controller="adminConsoleController">
+  <ul class="nav nav-tabs" id="dataList3">
+   <li class="active"><a data-target="#countTelemetry" data-toggle="tab">Telemetry </a></li>
+ </ul>
+
+ <div class="tab-content">
+  <div class="tab-pane active" id="countTelemetry">
+    <br />
+    <p>The dashboard will report on metrics and trend for usage analytics. There are other metrics REST APIs available.
+    </p>
+    <p class="marginTop"></p>
+
+    <br />
+
+    <div class="row col-md-12 " style="margin-top: 30px;" ng-init="getTelemetryMetricsTrend()">
+      <nvd3 options='optionX' data='dataTelemetryTrend'></nvd3>
+      <button type="radio" id="refreshTelemetryMetricsTrend" ng-click="getTelemetryMetricsTrend()" class="btn btn-success ">
+          <i class="glyphicon glyphicon-refresh btn-success"></i> Refresh
+      </button>
+    </div>
+  </div>
+  <!-- tab-pane active -->
+
+ </div>
+ <!-- tab-content -->
+ </div>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>IoT Platform Admin Console </title>
+
+  <!-- build:css dist/platform-thirdparty.css -->
+  <link type="text/css" rel="stylesheet" href="dist/platform-thirdparty.css">
+
+  <!-- custom CSS, e.g. Limitless -->
+  <link type="text/css" rel="stylesheet" href="app/styles/styles.css">
+  <link type="text/css" rel="stylesheet" href="app/styles/core.css">
+  <link type="text/css" rel="stylesheet" href="app/styles/components.css">
+  <link type="text/css" rel="stylesheet" href="app/styles/colors.css">
+
+  <!-- build:js dist/platform-thirdparty.js -->
+  <script src="dist/platform-thirdparty.js"></script>
+
+  <!-- Dependencies: angularJS -->
+
+  <!-- Dependencies: pace, jquery, bootstrap, blockui -->
+
+  <!-- custom scripts, e.g. from third-party stylesheet: Limitless -->
+</head>
+
+<body ng-app="app">
+  <div class="navbar navbar-inverse header-highlight" >
+    <!-- Navbar header -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/iot-platform-logo-128x32.png" alt="" >
+      </a>
+      <ul class="nav navbar-nav visible-xs-block">
+        <li>
+          <a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a>
+        </li>
+        <li>
+          <a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a>
+        </li>
+      </ul>
+    </div>
+    <!-- /Navbar header -->
+
+    <!-- Navbar menus -->
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+      
+      <!-- /Navbar icons -->
+      <ul class="nav navbar-nav navbar-right">
+        <!-- User dropdown -->
+        <li ui-sref-active="active">
+          <a ui-sref="dataGenerator"><i class="glyphicon glyphicon-th-large"></i>&nbsp;&nbsp;Data Generator </a>
+        </li>
+
+        <li ui-sref-active="active">
+          <a ui-sref="dataBrowser" ><i class="glyphicon glyphicon-eye-open"></i>&nbsp;&nbsp;Data Browser </a>
+        </li>  
+
+        <li ui-sref-active="active">
+          <a ui-sref="dataMetrics"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;&nbsp;Metrics </a>
+        </li>
+
+        <li ui-sref-active="active">
+          <a ui-sref="dataCleanup"><i class="glyphicon glyphicon-hdd"></i>&nbsp;&nbsp;Database </a>
+        </li>
+
+        <li ui-sref-active="active">
+          <a href="/api"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;API </a>
+        </li>
+        <!-- /User dropdown -->
+         
+      </ul>
+
+
+    </div>
+    <!-- /Navbar menus -->
+
+  </div>
+  <!-- /main navbar -->
+
+  <div id="mainContainer">
+    <div class="container col-md-12 ">
+      <div ui-view="dataGenerator"></div>
+    </div>   
+
+    <div class="container col-md-12 ">
+      <div ui-view="dataBrowser"></div>
+    </div>         
+
+    <div class="container col-md-12 ">
+      <div ui-view="dataMetrics"></div>
+    </div> 
+
+    <div class="container col-md-12 ">
+      <div ui-view="dataCleanup"></div>
+    </div>
+  </div>
+  
+</div>
+
+<!-- build:js dist/platform-thirdparty.js -->
+<script type="text/javascript" src="dist/platform-thirdparty.js"></script>
+<script type="text/javascript" src="config/clientSettings.js"></script>
+<script type="text/javascript" src="app/controllers/adminConsoleControllers.js"></script>
+<script type="text/javascript" src="app/factories/adminConsoleFactories.js"></script>
+<script type="text/javascript" src="app/scripts/socketConsole.js"></script>
+<script type="text/javascript" src="app/directives/angular-nvd3.js"></script>
+
+</body>
+</html>

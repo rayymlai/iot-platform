@@ -1,0 +1,119 @@
+<div id="dataBrowserPanel" class="container contentContainer col-md-8 col-xs-12 col-md-offset-2"
+  style="margin-top: 20px;" ng-controller="adminConsoleController">
+  <ul class="nav nav-tabs" id="dataList2">
+   <li class="active"><a data-target="#browseTelemetry" data-toggle="tab">Telemetry </a></li>
+ </ul>
+
+ <div class="tab-content">
+  <div class="tab-pane active" id="browseTelemetry">
+    <br />
+    <p>The data browser will browse telemetry collection for verification. It will fetch the latest n records by device id.
+    </p>
+    <p class="marginTop"></p>
+
+    <br />
+   
+    <div class="row col-md-12 ">
+      <form>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i>
+            </div>
+            <input type="text" class="form-control" placeholder="Search..." ng-model="searchCriteria">
+          </div>      
+        </div>
+      </form>
+      <table class="table table-bordered table-striped table-condensed table-responsive flip-content" border="0">
+        <thead>
+          <tr>
+            <th><a href="#" ng-click="sortType = 'deviceId'; sortReverse = !sortReverse">
+              Device Id
+              <span ng-show="sortType == 'deviceId' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'deviceId' && sortReverse" class="fa fa-caret-up"></span>
+            </th>
+            <th><a href="#" ng-click="sortType = 'qx'; sortReverse = !sortReverse">
+              qx
+              <span ng-show="sortType == 'qx' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'qx' && sortReverse" class="fa fa-caret-up"></span>
+            </th>
+            <th><a href="#" ng-click="sortType = 'qy'; sortReverse = !sortReverse">
+              qy
+              <span ng-show="sortType == 'qy' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'qy' && sortReverse" class="fa fa-caret-up"></span>
+            </th>
+            <th><a href="#" ng-click="sortType = 'qz'; sortReverse = !sortReverse">
+              qz
+              <span ng-show="sortType == 'qz' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'qz' && sortReverse" class="fa fa-caret-up"></span>
+            </th>
+            <th><a href="#" ng-click="sortType = 'ex'; sortReverse = !sortReverse">
+              ex
+              <span ng-show="sortType == 'qx' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'qx' && sortReverse" class="fa fa-caret-up"></span>
+            </th>
+            <th><a href="#" ng-click="sortType = 'ey'; sortReverse = !sortReverse">
+              ey
+              <span ng-show="sortType == 'ey' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'ey' && sortReverse" class="fa fa-caret-up"></span>
+            </th>
+            <th><a href="#" ng-click="sortType = 'ez'; sortReverse = !sortReverse">
+              ez
+              <span ng-show="sortType == 'ez' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'ez' && sortReverse" class="fa fa-caret-up"></span>
+            </th>
+            <th><a href="#" ng-click="sortType = 'qw'; sortReverse = !sortReverse">
+              Battery level
+              <span ng-show="sortType == 'qw' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'qw' && sortReverse" class="fa fa-caret-up"></span>
+            </th>
+            <th><a href="#" ng-click="sortType = 'hum'; sortReverse = !sortReverse">
+              Humidity
+              <span ng-show="sortType == 'hum' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'hum' && sortReverse" class="fa fa-caret-up"></span>
+            </th>
+            <th><a href="#" ng-click="sortType = 'temp'; sortReverse = !sortReverse">
+              Temperature
+              <span ng-show="sortType == 'temp' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'temp' && sortReverse" class="fa fa-caret-up"></span>
+            </th>
+            <th><a href="#" ng-click="sortType = 'time'; sortReverse = !sortReverse">
+              Timestamp
+              <span ng-show="sortType == 'time' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'time' && sortReverse" class="fa fa-caret-up"></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat = "telemetry in telemetryDataSet | orderBy:sortType:sortReverse | filter:searchCriteria">
+            <td>{{ telemetry.deviceId }}</td>
+            <td>{{ telemetry.qx }}</td>
+            <td>{{ telemetry.qy }}</td>
+            <td>{{ telemetry.qz }}</td>
+            <td>{{ telemetry.ex }}</td>
+            <td>{{ telemetry.ey }}</td>
+            <td>{{ telemetry.ez }}</td>
+            <td>{{ telemetry.qw }}</td>
+            <td>{{ telemetry.hum }}</td>
+            <td>{{ telemetry.temp }}</td>
+            <td>{{ telemetry.time }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row col-md-12" style="margin-top:40px;">
+      <p ng-init="getTelemetryPartial(yourDeviceId, 3)" >
+        <button type="radio" id="getTelemetryPartial" ng-click="getTelemetryPartial(yourDeviceId, yourNItems)" class="btn btn-success ">
+          <i class="glyphicon glyphicon-play btn-success"></i> Browse
+        </button>&nbsp;&nbsp;
+        <span>Device Id: <input type="text" id="yourDeviceId" ng-model="yourDeviceId"></span>&nbsp;&nbsp;
+        <span>Fetch latest # of Items: <input type="text" id="yourNItems" ng-model="yourNItems"></span>
+      </p>
+    </div>
+
+  </div>
+  <!-- tab-pane active -->
+
+ </div>
+ <!-- tab-content -->
+</div>
