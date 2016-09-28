@@ -36,11 +36,11 @@ var io = '';
 
 
 // read SSL cert (self-signed cert for testing).
-var quindarKey = fs.readFileSync(__dirname + '/keys/quindar-key.pem');
-var quindarCert = fs.readFileSync(__dirname + '/keys/quindar-cert.pem');
+var sslKey = fs.readFileSync(__dirname + '/keys/ssl-key.pem');
+var sslCert = fs.readFileSync(__dirname + '/keys/ssl-cert.pem');
 var sslOptions = {
-  key: quindarKey,
-  cert: quindarCert
+  key: sslKey,
+  cert: sslCert
 };
 
 // logging
@@ -74,7 +74,7 @@ app.set('view engine', 'html');
 
 // required for passport, include XSS prevention
 app.use(session({ 
-	secret: 'race2space',
+	secret: 'secretSauce',
 	resave: true,
 	saveUninitialized: true,
 	cookie: {
